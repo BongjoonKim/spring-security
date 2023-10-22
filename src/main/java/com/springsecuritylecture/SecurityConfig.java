@@ -22,4 +22,13 @@ public class SecurityConfig {
         http.apply(new CustomSecurityConfigurer().setFlag(false));
         return http.build();
     };
+
+    @Bean
+    public SecurityFilterChain securityFilterChain2(HttpSecurity http) throws Exception {
+        http.authorizeHttpRequests((authorize) ->
+                authorize.anyRequest().authenticated());
+
+        http.httpBasic(Customizer.withDefaults());
+        return http.build();
+    }
 }
